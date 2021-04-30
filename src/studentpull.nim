@@ -10,7 +10,13 @@ let
     configFile = dir & "/.git/config"
 discard execShellCmd("git clone " & newUrl)
 
-var config = loadConfig(configFile)
-config.setSectionKey("user", "name", "JakeLeahyRMIT")
-config.setSectionKey("user", "email", "s3900927@student.rmit.edu.au")
-config.writeConfig(configFile)
+const extraConfig = """
+
+[user]
+    name=JakeLeahyRMIT
+    email="s3900927@student.rmit.edu.au"
+"""
+
+configFile.writeFile(readFile(configFile) & extraConfig)
+
+
